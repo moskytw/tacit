@@ -22,8 +22,6 @@ def tail(file_or_path, buffer_size=None):
         buffer_size = f.tell()
         f.seek(0)
 
-    end_pos = None
-
     fragment = None
 
     while True:
