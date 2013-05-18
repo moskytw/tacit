@@ -70,12 +70,3 @@ if __name__ == '__main__':
 
     for line in tail(path):
         print line,
-
-    #for i in range(10):
-    #    print 'i = ', i
-    #    for line in tail('ordered.list', i):
-    #        print line,
-    #    print
-
-    #for line in tail('ordered.list', 1):
-    #    print line,
