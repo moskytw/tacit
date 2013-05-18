@@ -46,11 +46,12 @@ def tail(file_or_path, buffer_size=None):
                 yield lines.pop(-1)+fragment
             fragment = ''
 
-        for line in reversed(lines[1:]):
+        if lines:
+            fragment = lines.pop(0)
+
+        for line in reversed(lines):
             yield line
 
-        if lines:
-            fragment = lines[0]
         #print 'fragment:', repr(fragment)
 
         #print '---'
