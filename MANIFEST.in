@@ -1,2 +1,3 @@
 include README*
 graft tests
+graft examples

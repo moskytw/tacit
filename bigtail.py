@@ -59,14 +59,3 @@ def tail(file_or_path, buffer_size=None):
             # read the final chunk
             buffer_size = f.tell()-buffer_size
             f.seek(0)
-
-if __name__ == '__main__':
-
-    import sys
-
-    path = 'data/access.log'
-    if len(sys.argv) == 2:
-        path = sys.argv[1]
-
-    for line in tail(path):
-        print line,
