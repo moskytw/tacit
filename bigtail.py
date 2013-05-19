@@ -43,7 +43,6 @@ def tail_chunks(file_or_path, buffer_size=None):
 
 def tail(file_or_path, buffer_size=None):
     
-    # the first line of chunk may not complete
     fragment = ''
 
     for chunk in tail_chunks(file_or_path, buffer_size):
