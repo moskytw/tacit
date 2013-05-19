@@ -37,35 +37,17 @@ def tail(file_or_path, buffer_size=None):
         lines = chunk.splitlines(True)
 
         if fragment and lines[-1].endswith('\n'):
-
             yield fragment
             fragment = ''
-
-            print '1'
 
         fragment = lines.pop(-1)+fragment
-        print 'f', repr(fragment)
-
-        if lines[1:]:
-            print '2'
-            print repr(lines[1:])
 
         if lines:
-
             yield fragment
-            fragment = ''
-
-            print '3'
-
             fragment = lines[0]
-
-            print 'e', repr(lines[0])
 
         for line in reversed(lines[1:]):
             yield line
-
-        print '---'
-
 
         # prepare for next reading
         step_size = -buffer_size*2 # include the range it read
@@ -75,5 +57,3 @@ def tail(file_or_path, buffer_size=None):
             # read the final chunk
             buffer_size = f.tell()-buffer_size
             f.seek(0)
-
-    yield None
