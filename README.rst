@@ -2,7 +2,10 @@ Big Tail
 ========
 
 It provides an useful function, ``tail``, which lets you read lines from the
-end.  It is useful for parsing log file.
+end. It works like the ``tac`` command in the shell.
+
+It reads file into a fixed buffer and yields lines orderly, so it is comportable
+to use on big file. (ex. large log)
 
 An Example
 ----------
