@@ -30,7 +30,6 @@ def tail_chunks(file_or_path, buffer_size=None):
             buffer_size = f.tell()
             f.seek(0)
 
-        # read the chunk form file
         chunk = f.read(buffer_size)
         if not chunk: break
 
