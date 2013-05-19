@@ -39,11 +39,32 @@ def tail(file_or_path, buffer_size=None):
         lines = chunk.splitlines(True)
 
         # if the existent fragment is a complete line
+        #
+        # normal case:
+        #     fragment : 'world.\n'
+        #     lines[-1]: 'hello, '
+        #
+        # edge case:
+        #     fragment : 'hello, world.\n'
+        #     lines[-1]: 'another line.\n'
+        #
         if fragment and lines[-1].endswith('\n'):
             yield fragment
             fragment = ''
 
         # integrate the fragments
+        #
+        # normal case:
+        #     fragment: ['world\n']
+        #     lines   : ['another line.\n', 'hello, ']
+        #
+        # note: the fragment integrated will be yield in next section
+        #
+        # edge case:
+        #     lines in 1st iteration: ['ab']
+        #     lines in 2nd iteration: ['cd']
+        #     lines in 3rd iteration: ['e\n']
+        #
         fragment = lines.pop(-1)+fragment
 
         # if there remains any \n, the fragment is a complete line
@@ -53,6 +74,7 @@ def tail(file_or_path, buffer_size=None):
             # always treat the first line as a fragment
             fragment = lines[0]
 
+            # other lines
             for line in reversed(lines[1:]):
                 yield line
 
