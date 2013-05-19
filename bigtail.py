@@ -31,7 +31,8 @@ def tail(file_or_path, buffer_size=None):
         # read the chunk form file
         chunk = f.read(buffer_size)
         if not chunk:
-            yield fragment
+            if fragment:
+                yield fragment
             break
 
         # parse the chunk
