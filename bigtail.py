@@ -24,34 +24,30 @@ def tail(file_or_path, buffer_size=None):
         buffer_size = f.tell()
         f.seek(0)
 
-    # fragment is the first line of a chunk
-    fragment = None
+    fragment = ''
 
     while True:
 
         # read the chunk form file
         chunk = f.read(buffer_size)
         if not chunk:
-            if fragment:
-                yield fragment
             break
 
-        # handle the chunk
         lines = chunk.splitlines(True)
 
-        if fragment:
-            if lines[-1].endswith('\n'):
-                # last chunk don't have fragment
-                yield fragment
-            else:
-                yield lines.pop(-1)+fragment
-            fragment = ''
+        if fragment and lines[-1].endswith('\n'):
+            print
+
+        fragment = lines.pop(-1)
+        print 'f', repr(fragment)
+
+        if lines[1:]:
+            print
+            print repr(lines[1:])
 
         if lines:
-            fragment = lines.pop(0)
-
-        for line in reversed(lines):
-            yield line
+            print
+            print 'e', repr(lines[0])
 
         # prepare for next reading
         step_size = -buffer_size*2 # include the range it read
@@ -61,3 +57,5 @@ def tail(file_or_path, buffer_size=None):
             # read the final chunk
             buffer_size = f.tell()-buffer_size
             f.seek(0)
+
+    yield None
