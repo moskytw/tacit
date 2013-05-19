@@ -24,6 +24,7 @@ def tail(file_or_path, buffer_size=None):
         buffer_size = f.tell()
         f.seek(0)
 
+    # fragment is the first line of a chunk
     fragment = None
 
     while True:
@@ -40,6 +41,7 @@ def tail(file_or_path, buffer_size=None):
 
         if fragment:
             if lines[-1].endswith('\n'):
+                # last chunk don't have fragment
                 yield fragment
             else:
                 yield lines.pop(-1)+fragment
