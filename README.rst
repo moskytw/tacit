@@ -1,8 +1,8 @@
 Big Tail
 ========
 
-It provides an useful function, ``tail``, which lets you read lines from the
-end. It works like the ``tac`` command in the shell.
+It provides an useful function, ``tail``, which lets you read lines in a file
+from the end. It works like the ``tac`` command in the shell.
 
 It reads file into a fixed buffer and yields lines orderly, so it is comportable
 to use on big file. (ex. large log)
