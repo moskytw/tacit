@@ -3,6 +3,8 @@
 
 import os
 
+__version__ = '0.1'
+
 def tail(file_or_path, buffer_size=None):
     
     if buffer_size is None:
