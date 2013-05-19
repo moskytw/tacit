@@ -51,8 +51,8 @@ def tail(file_or_path, buffer_size=None):
             # always treat the first line as a fragment
             fragment = lines[0]
 
-        for line in reversed(lines[1:]):
-            yield line
+            for line in reversed(lines[1:]):
+                yield line
 
         # prepare for next reading
         step_size = -buffer_size*2 # include the range it read
