@@ -49,18 +49,18 @@ def tail(file_or_path, buffer_size=None):
 
         lines = chunk.splitlines(True)
 
-        # handle the previous fragment
+        # check the integrity of the fragment
         if fragment and lines[-1].endswith('\n'):
-            # fragment is complete line now
+            # fragment is a complete line, because the last line ends with '\n'
             yield fragment
             fragment = ''
 
-        # the last line of this chunk is part of previous fragment
+        # the last line of this chunk may be a part of previous fragment
         fragment = lines.pop(-1)+fragment
 
         if lines:
 
-            # the fragment is complete line now, because there still has '\n'
+            # the fragment is a complete line, because there has other '\n'
             yield fragment
 
             # the first line may be a fragment
