@@ -31,23 +31,39 @@ def tail(file_or_path, buffer_size=None):
         # read the chunk form file
         chunk = f.read(buffer_size)
         if not chunk:
+            yield fragment
             break
 
         lines = chunk.splitlines(True)
 
         if fragment and lines[-1].endswith('\n'):
+
+            yield fragment
+            fragment = ''
+
             print
 
-        fragment = lines.pop(-1)
+        fragment = lines.pop(-1)+fragment
         print 'f', repr(fragment)
+
+        for line in lines[1:]:
+            yield line
 
         if lines[1:]:
             print
             print repr(lines[1:])
 
         if lines:
+
+            yield fragment
+            fragment = ''
+
             print
+
+            fragment = lines[0]
+
             print 'e', repr(lines[0])
+
 
         # prepare for next reading
         step_size = -buffer_size*2 # include the range it read
