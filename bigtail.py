@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-
 __version__ = '0.1.2'
+
+import os
 
 def tail(file_or_path, buffer_size=None):
     
