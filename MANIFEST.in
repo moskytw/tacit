@@ -1,3 +1,4 @@
 include README*
-graft tests
 graft examples
+graft tests
+graft data
