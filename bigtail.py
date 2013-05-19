@@ -47,6 +47,7 @@ def tail(file_or_path, buffer_size=None):
 
         # if there remains any \n, the fragment is a complete line
         if lines:
+
             yield fragment
             # always treat the first line as a fragment
             fragment = lines[0]
