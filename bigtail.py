@@ -61,7 +61,7 @@ def tail(file_or_path, buffer_size=None):
 
             print 'e', repr(lines[0])
 
-        for line in lines[1:]:
+        for line in reversed(lines[1:]):
             yield line
 
         print '---'
