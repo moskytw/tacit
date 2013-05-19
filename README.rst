@@ -1,8 +1,8 @@
 Big Tail
 ========
 
-It provides an useful function, ``tail``, which lets you read file from the end.
-It is useful for parsing log file.
+It provides an useful function, ``tail``, which lets you read lines from the
+end.  It is useful for parsing log file.
 
 An Example
 ----------
