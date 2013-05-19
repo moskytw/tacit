@@ -41,7 +41,7 @@ def tail(file_or_path, buffer_size=None):
             yield fragment
             fragment = ''
 
-            print
+            print '1'
 
         fragment = lines.pop(-1)+fragment
         print 'f', repr(fragment)
@@ -50,7 +50,7 @@ def tail(file_or_path, buffer_size=None):
             yield line
 
         if lines[1:]:
-            print
+            print '2'
             print repr(lines[1:])
 
         if lines:
@@ -58,11 +58,13 @@ def tail(file_or_path, buffer_size=None):
             yield fragment
             fragment = ''
 
-            print
+            print '3'
 
             fragment = lines[0]
 
             print 'e', repr(lines[0])
+
+        print '---'
 
 
         # prepare for next reading
