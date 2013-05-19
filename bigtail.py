@@ -5,6 +5,49 @@ __version__ = '0.1.2'
 
 import os
 
+def tail_chunks(file_or_path, buffer_size=None):
+
+    if buffer_size is None:
+        # `buffer_size` is not a constant.
+        buffer_size = 4096 # 4 kB
+
+    open_by_me = None
+
+    if isinstance(file_or_path, basestring):
+        f = open(file_or_path)
+        open_by_me = True
+    else:
+        f = file_or_path
+        open_by_me = False
+
+    # move to the end and prepare for first reading
+    f.seek(0, os.SEEK_END)
+    if f.tell()-buffer_size >= 0:
+        f.seek(-buffer_size, os.SEEK_END)
+    else:
+        buffer_size = f.tell()
+        f.seek(0)
+
+    while True:
+
+        # read the chunk form file
+        chunk = f.read(buffer_size)
+        if not chunk: break
+
+        yield chunk
+
+        # prepare for next reading
+        step_size = -buffer_size*2 # include the range it read
+        if f.tell()+step_size >= 0:
+            f.seek(step_size, os.SEEK_CUR)
+        else:
+            # read the final chunk
+            buffer_size = f.tell()-buffer_size
+            f.seek(0)
+
+    if open_by_me:
+        f.close()
+
 def tail(file_or_path, buffer_size=None):
     
     if buffer_size is None:
