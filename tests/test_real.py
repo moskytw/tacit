@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bigtail import tail
+from tacit import tac
 
-for line in tail('data/access.log'):
+for line in tac('data/access.log'):
     print line,

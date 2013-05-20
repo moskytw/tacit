@@ -5,7 +5,7 @@ __version__ = '0.2'
 
 import os
 
-def tail_chunks(file_or_path, buffer_size=None):
+def tac_chunks(file_or_path, buffer_size=None):
 
     if buffer_size is None:
         # `buffer_size` is not a constant.
@@ -41,11 +41,11 @@ def tail_chunks(file_or_path, buffer_size=None):
     if open_by_me:
         f.close()
 
-def tail(file_or_path, buffer_size=None):
+def tac(file_or_path, buffer_size=None):
     
     fragment = ''
 
-    for chunk in tail_chunks(file_or_path, buffer_size):
+    for chunk in tac_chunks(file_or_path, buffer_size):
 
         lines = chunk.splitlines(True)
 

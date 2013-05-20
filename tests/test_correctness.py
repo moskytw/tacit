@@ -4,7 +4,7 @@
 import sys
 from itertools import izip
 
-from bigtail import tail
+from tacit import tac
 
 ordered_list_path = 'data/ordered.list'
 
@@ -19,7 +19,7 @@ for bsize in range(10):
 
     for expected_line, line in izip(
         expected_lines,
-        tail(ordered_list_path, bsize)
+        tac(ordered_list_path, bsize)
     ):
         if line != expected_line:
             print >> sys.stderr, 'error: bsize=%d, expected_line=%r, line=%r' % (bsize, expected_line, line)

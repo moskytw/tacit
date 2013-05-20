@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from timeit import timeit
-from bigtail import tail
+from tacit import tac
 
 def test():
-    for line in tail('data/ordered.list'):
+    for line in tac('data/ordered.list'):
         line
 
 if __name__ == '__main__':
