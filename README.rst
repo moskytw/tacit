@@ -1,7 +1,7 @@
-Big Tail
-========
+Tacit
+=====
 
-It provides an useful function, ``tail``, which lets you read lines in a file
+It provides an useful function, ``tac``, which lets you read lines in a file
 from the end. It works like the ``tac`` command in the shell.
 
 It reads file into a fixed buffer and yields lines orderly, so it is comportable
@@ -14,7 +14,7 @@ You can install it via PyPI,
 
 ::
 
-    sudo pip install bigtail
+    sudo pip install tacit
 
 or download it manually.
 
@@ -37,9 +37,9 @@ The code:
         print line,
     print
 
-    from bigtail import tail
+    from tacit import tac
 
-    for line in tail(path):
+    for line in tac(path):
         print line,
 
 The output:
