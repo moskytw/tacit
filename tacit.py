@@ -5,7 +5,7 @@ __version__ = '0.2.1'
 
 import os
 
-def tac_chunks(file_or_path, buffer_size=None):
+def tac_slices(file_or_path, buffer_size=None):
 
     if buffer_size is None:
         # `buffer_size` is not a constant.
@@ -23,51 +23,51 @@ def tac_chunks(file_or_path, buffer_size=None):
 
     while True:
 
-        # move to the start of next chunk
+        # move to the start of next slice
         if f.tell()-buffer_size > 0:
             f.seek(-buffer_size, os.SEEK_CUR)
         else:
             buffer_size = f.tell()
             f.seek(0)
 
-        chunk = f.read(buffer_size)
-        if not chunk: break
+        slice = f.read(buffer_size)
+        if not slice: break
 
         # restore the pointer after reading the file
         f.seek(-buffer_size, os.SEEK_CUR)
 
-        yield chunk
+        yield slice
 
     if open_by_me:
         f.close()
 
 def tac(file_or_path, buffer_size=None):
     
-    fragment = ''
+    segment = ''
 
-    for chunk in tac_chunks(file_or_path, buffer_size):
+    for slice in tac_slices(file_or_path, buffer_size):
 
-        lines = chunk.splitlines(True)
+        lines = slice.splitlines(True)
 
-        # check the integrity of the fragment
-        if fragment and lines[-1].endswith('\n'):
-            # fragment is a complete line, because the last line ends with '\n'
-            yield fragment
-            fragment = ''
+        # check the integrity of the segment
+        if segment and lines[-1].endswith('\n'):
+            # segment is a complete line, because the last line ends with '\n'
+            yield segment
+            segment = ''
 
-        # the last line of this chunk may be a part of previous fragment
-        fragment = lines.pop(-1)+fragment
+        # the last line of this slice may be a part of previous segment
+        segment = lines.pop(-1)+segment
 
         if lines:
 
-            # the fragment is a complete line, because there has other '\n'
-            yield fragment
+            # the segment is a complete line, because there has other '\n'
+            yield segment
 
-            # the first line may be a fragment
-            fragment = lines[0]
+            # the first line may be a segment
+            segment = lines[0]
 
             for line in reversed(lines[1:]):
                 yield line
 
-    if fragment:
-        yield fragment
+    if segment:
+        yield segment
