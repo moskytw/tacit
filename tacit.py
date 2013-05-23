@@ -14,7 +14,7 @@ def tac_slices(file_or_path, buffer_size=None):
     open_by_me = None
 
     if isinstance(file_or_path, basestring):
-        f = open(file_or_path)
+        f = open(file_or_path, 'rb')
         f.seek(0, os.SEEK_END)
         open_by_me = True
     else:
