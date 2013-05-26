@@ -5,7 +5,7 @@ __version__ = '0.3'
 
 import os
 
-def tac_slices(file_or_path, buffer_size=None):
+def tac_chunks(file_or_path, buffer_size=None):
 
     if buffer_size is None:
         # `buffer_size` is not a constant.
@@ -23,20 +23,20 @@ def tac_slices(file_or_path, buffer_size=None):
 
     while True:
 
-        # move to the start of next slice
+        # move to the start of next chunk
         if f.tell()-buffer_size > 0:
             f.seek(-buffer_size, os.SEEK_CUR)
         else:
             buffer_size = f.tell()
             f.seek(0)
 
-        slice = f.read(buffer_size)
-        if not slice: break
+        chunk = f.read(buffer_size)
+        if not chunk: break
 
         # restore the pointer after reading the file
         f.seek(-buffer_size, os.SEEK_CUR)
 
-        yield slice
+        yield chunk
 
     if open_by_me:
         f.close()
@@ -45,9 +45,9 @@ def tac(file_or_path, buffer_size=None):
     
     segment = ''
 
-    for slice in tac_slices(file_or_path, buffer_size):
+    for chunk in tac_chunks(file_or_path, buffer_size):
 
-        lines = slice.splitlines(True)
+        lines = chunk.splitlines(True)
 
         # check the integrity of the segment
         if segment and lines[-1].endswith('\n'):
@@ -55,7 +55,7 @@ def tac(file_or_path, buffer_size=None):
             yield segment
             segment = ''
 
-        # the last line of this slice may be a part of previous segment
+        # the last line of this chunk may be a part of previous segment
         segment = lines.pop(-1)+segment
 
         if lines:
