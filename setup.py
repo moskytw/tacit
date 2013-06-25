@@ -10,6 +10,7 @@ setup(
     author  = 'Mosky',
     author_email = 'mosky.tw@gmail.com',
     #url = 'http://tacit.mosky.tw/',
+    url = 'https://github.com/moskytw/tacit',
     py_modules = ['tacit'],
     license = 'MIT',
     classifiers = [
