@@ -18,8 +18,8 @@ You can install it via PyPI,
 
 or download it manually.
 
-An Example
-----------
+Examples
+--------
 
 The content of file:
 
@@ -53,3 +53,5 @@ The output:
     The last line.
     The second line.
     The first line.
+
+`Here <https://github.com/moskytw/tacit/tree/dev/examples>`_ are more examples.
