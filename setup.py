@@ -4,7 +4,7 @@ from tacit import __version__
 
 setup(
     name    = 'tacit',
-    description = 'It provides an useful function which lets you read lines from the end.',
+    description = 'Read lines from end of file.',
     long_description = open('README.rst').read(),
     version = __version__,
     author  = 'Mosky',
