@@ -54,4 +54,5 @@ The output:
     The second line.
     The first line.
 
-`Here <https://github.com/moskytw/tacit/tree/dev/examples>`_ are more examples.
+There are more examples: `/examples
+<https://github.com/moskytw/tacit/tree/dev/examples>`_.
