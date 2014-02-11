@@ -42,7 +42,7 @@ def tac_slices(file_or_path, buffer_size=None):
         f.close()
 
 def tac(file_or_path, buffer_size=None):
-    
+
     segment = ''
 
     for slice in tac_slices(file_or_path, buffer_size):
