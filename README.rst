@@ -7,17 +7,6 @@ file. It works like the ``tac`` command in the shell.
 It reads file into a fixed buffer and yields lines orderly, so it is comportable
 to use on big file, e.g., large log.
 
-Installation
-------------
-
-You can install it via PyPI,
-
-::
-
-    sudo pip install tacit
-
-or download it manually.
-
 Examples
 --------
 
